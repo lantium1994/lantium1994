@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #topimg {
+            width: 100%;
+            height: 100vh;
+            background-image: url('./pic/pexels-quang-nguyen-vinh-2176593.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            background-attachment: fixed;
+            opacity: 0.6;
+        }
+
+        #text {
+            width: 37.5vh;
+            height: 6.5vh;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            padding: 18px;
+            color: white;
+            text-align: center;
+            letter-spacing: 7px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        #mid-text {
+            width: 100%;
+            border: 1px solid black;
+            padding: 3vh 8vh 5vh;
+        }
+
+        #mid-text h3 {
+            font-size: 25px;
+            text-align: center;
+            letter-spacing: 3px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        p {
+            width: 100%;
+            margin: 0 auto;
+            font-size: 16px;
+            text-align: justify;
+            font-family: 'Dosis', sans-serif;
+            letter-spacing: 1px;
+            line-height: 25px;
+
+        }
+
+        #img2 {
+            width: 100%;
+            height: 40vh;
+            background-image: url('./pic/pexels-lukas-hartmann-1462011.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            background-attachment: fixed;
+            opacity: 0.6;
+        }
+
+        #text2 {
+            width: 37.5vh;
+            height: 6.5vh;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            padding: 18px;
+            color: white;
+            text-align: center;
+            letter-spacing: 7px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        #mid-text2 {
+            width: 100%;
+            height: 15vh;
+            background-color: #282e34;
+            padding: 6vh 8vh;
+        }
+
+        #mid-text2 p {
+            color: white;
+        }
+
+        #img3 {
+            width: 100%;
+            height: 40vh;
+            background-image: url('./pic/pexels-nina-uhlikova-287240.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            background-attachment: fixed;
+            opacity: 0.6;
+        }
+
+        #text3 {
+            width: 37.5vh;
+            height: 6.5vh;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            padding: 18px;
+            color: white;
+            text-align: center;
+            letter-spacing: 7px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        #mid-text3 {
+            width: 100%;
+            height: 15vh;
+            background-color: #282e34;
+            padding: 6vh 8vh;
+        }
+
+        #mid-text3 p {
+            color: white;
+        }
+
+        #img4 {
+            width: 100%;
+            height: 100vh;
+            background-image: url('./pic/pexels-matthew-montrone-1324803.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            background-attachment: fixed;
+            opacity: 0.6;
+        }
+
+        #text4 {
+            width: 37.5vh;
+            height: 6.5vh;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111;
+            padding: 18px;
+            color: white;
+            text-align: center;
+            letter-spacing: 7px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        #nav {
+            width: 100%;
+            height: 60px;
+            background-color: rgb(130, 143, 131);
+            text-align: end;
+            line-height: 60px;
+            padding-right: 50px;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            opacity: 0.85;
+        }
+
+        #nav a {
+            color:black;
+            font-size: 25px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <a href="#topimg">top</a>
+        <a href="#img2">mid</a>
+        <a href="#img4">bottom</a>
+    </div>
+    <div id="topimg">
+        <div id="text">SCROLL DOWN</div>
+    </div>
+    <div id="mid-text">
+        <h3>PARALLAX DEMO</h3>
+        <p>Parallax scrolling is a web site trend where the background content is moved at a different speed than the
+            foreground content while scrolling. Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed
+            posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit
+            dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur
+            aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl
+            dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio.
+            Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem
+            mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante
+            augue etiam maecenas, porta porttitor placerat leo.</p>
+    </div>
+    <div id="img2">
+        <div id="text2">LESS HEIGHT</div>
+    </div>
+    <div id="mid-text2">
+        <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+    </div>
+    <div id="img3">
+        <div id="text3">SCROLL UP</div>
+    </div>
+    <div id="mid-text3">
+        <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+    </div>
+    <div id="img4">
+        <div id="text4">COOL!</div>
+    </div>
+</body>
+
+</html>

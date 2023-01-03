@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: bisque;
+    }
+
+    .container {
+      width: 90%;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      top: 5vh;
+      margin: auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .tab {
+      padding: 9px;
+      width: calc(100% / 6);
+      height: 70px;
+      border: 1px solid black;
+      border-radius: 5px 15px 0 0;
+      background-color: aquamarine;
+      font-size: 34px;
+      text-align: center;
+      box-shadow: 0 -5px 5px rgb(8, 12, 8);
+    }
+
+    .main-section {
+      width: 100%;
+      display: flex;
+      background-color: white;
+      border-radius: 0 0 15px 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .card {
+      width: 300px;
+      height: 400px;
+      margin: 10px 15px;
+
+      background-color: black;
+      color: white;
+      border-radius: 10px 10px 10px 10px;
+      transition: transform 0.5s ease;
+    }
+
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: rgb(228, 202, 153);
+      color: black;
+    }
+
+    .area {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 500;
+      padding-top: 10px;
+      width: 100%;
+      height: 20%;
+    }
+
+    .discription {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 500;
+      padding-top: 10px;
+      width: 100%;
+      height: 25%;
+    }
+
+
+    .icon {
+      text-align: center;
+      border-radius: 15px 15px 0 0;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 35%;
+    }
+
+    .temp {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 500;
+      padding-top: 10px;
+      width: 100%;
+      height: 20%;
+    }
+
+    .click {
+      background-color: blue;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="tab">北部</div>
+      <div class="tab">中部</div>
+      <div class="tab">南部</div>
+      <div class="tab">東部</div>
+      <div class="tab">離島</div>
+      <div class="tab">全部</div>
+    </div>
+    <div class="main-section">
+
+    </div>
+  </div>
+
+
+  <script>
+    /////////////////////// 宣告區 //////////////////////////////
+    const tabs = document.querySelectorAll('.tab');
+    const area = document.querySelector('.area');
+    const discription = document.querySelector('.discription');
+    const icon = document.querySelector('.icon');
+    const temp = document.querySelector('.temp');
+    const card = document.querySelector('.card');
+    const mainSection = document.querySelector('.main-section');
+    const sunny = './pic/sunbeams.png';
+    const rainy = './pic/raining.png';
+    const cloudy = './pic/sun-cloud.png';
+    let database = {};
+
+    let data = fetch('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-F111C39D-E037-4750-A84C-566E8367ED9E').then(function (response) {
+      return response.json()
+    }).then((data) => {
+      database = { ...data };
+    })
+    function databaseF() {
+      return database;
+    }
+    console.log(database);
+    setTimeout(function () {
+      console.log(database.records.location[0]);
+    }, 100)
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(x => {
+          x.classList.remove('click')
+        })
+        tab.classList.add('click');
+        mainSection.innerHTML = '';
+        ///////////////////生成區//////////////////////////
+        let northI = [1, 3, 4, 5, 7, 13, 18, 23, 23];
+        let eastI = [10, 12, 23];
+        let centerI = [8, 9, 11, 14, 20, 23];
+        let southI = [0, 2, 6, 15, 17, 23];
+        let isleI = [16, 19, 21];
+        let all = [];
+        for (let i = 0; i < 24; i++) {
+          all[i] = i;
+        }
+
+        let weather = j => { return databaseF().records.location[j].weatherElement[0].time[0].parameter.parameterName };
+        let temperature = j => { return databaseF().records.location[j].weatherElement[2].time[0].parameter.parameterName + '°' + databaseF().records.location[j].weatherElement[2].time[0].parameter.parameterUnit };
+        let pic = j => {
+          if (weather(j).includes('晴天')) {
+            return sunny;
+          }
+          else if (weather(j).includes('雨')) {
+            return rainy;
+          }
+          else {
+            return cloudy;
+          }
+        }
+        let generateCard = function (arr) {
+          arr.forEach((num) => {
+            let babaIsYou = num >= 22 ? `<div class="card" style ="background-color : transparent;"></div>` : `
+              <div class="card">
+                <img class="icon" src="${pic(num)}" alt="">
+                <div class="area">${databaseF().records.location[num].locationName}</div>
+                <div class="temp">${temperature(num)}</div>
+                <div class="discription">${weather(num)}</div>
+              </div>`
+
+            mainSection.innerHTML += `
+              ${babaIsYou}`
+          })
+        }
+        if (i == 0) {
+          generateCard(northI);
+        } else if (i == 1) {
+          generateCard(centerI);
+        } else if (i == 2) {
+          generateCard(southI);
+        } else if (i == 3) {
+          generateCard(eastI);
+        } else if (i == 4) {
+          generateCard(isleI);
+        } else {
+          generateCard(all);
+        }
+
+      })
+    })
+  </script>
+</body>
+
+</html>

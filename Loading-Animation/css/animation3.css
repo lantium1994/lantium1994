@@ -1,0 +1,421 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.box {
+  z-index: 5;
+  width: 500px;
+  height: 500px;
+  position: relative;
+  top: 50vh;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  transition: border-radius 0.5s ease;
+  /* -------------------hover------------------- */
+  /*------------------active------------------ */
+}
+.box .text {
+  position: absolute;
+  display: block;
+  width: 250px;
+  font-size: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: typing 1.5s alternate-reverse infinite, typing-color 5s linear infinite;
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.box .relocate {
+  display: none;
+  position: absolute;
+  width: 250px;
+  height: 55px;
+  font-size: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: typing 1.5s alternate-reverse infinite, typing-color 5s linear infinite;
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+  white-space: nowrap;
+  overflow: hidden;
+  color: black;
+}
+.box:hover {
+  border-radius: 50%;
+  animation: faint 5s alternate-reverse infinite, cycle 1s linear infinite;
+  -webkit-animation-delay: -4.5s;
+          animation-delay: -4.5s;
+}
+.box:hover .mov-el {
+  top: -25px;
+  left: 225px;
+  -webkit-animation: movement 0s, color-change 1s linear infinite;
+          animation: movement 0s, color-change 1s linear infinite;
+  border-radius: 50%;
+}
+.box:hover .e2 {
+  top: -21.2px;
+  left: 181.6px;
+}
+.box:hover .e3 {
+  top: -10px;
+  left: 139.5px;
+}
+.box:hover .e4 {
+  top: 8.5px;
+  left: 100px;
+}
+.box:hover .e5 {
+  top: 33.57px;
+  left: 64.3px;
+}
+.box:hover .e6 {
+  top: 64.3px;
+  left: 33.5px;
+}
+.box:hover .e7 {
+  top: 100px;
+  left: 8.5px;
+}
+.box:hover .e8 {
+  top: 139.5px;
+  left: -10px;
+}
+.box:hover .e9 {
+  top: 181.6px;
+  left: -21.2px;
+}
+.box:hover .e10 {
+  top: 225px;
+  left: -25px;
+}
+.box:hover .text {
+  animation: cycle 1s reverse linear infinite, typing-color 5s linear infinite, display-switch 2s linear forwards;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.box:hover .relocate {
+  animation: display-switch 2s reverse linear forward;
+}
+.box:active {
+  animation: faint 0s, faint-red 5s alternate-reverse infinite, cycle 1s linear infinite;
+  -webkit-animation-delay: -4.5s;
+          animation-delay: -4.5s;
+  background-color: black;
+}
+.box:active .text {
+  animation: cycle 1s reverse linear infinite, typing-color 0s linear infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+  color: white;
+}
+.box:active .mov-el {
+  border-radius: 0%;
+  background-color: brown;
+  -webkit-animation: none;
+          animation: none;
+}
+
+.mov-el {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  -webkit-animation: color-change 1s linear infinite, movement 1s linear infinite;
+          animation: color-change 1s linear infinite, movement 1s linear infinite;
+}
+
+.e2 {
+  -webkit-animation-delay: 0.025s;
+          animation-delay: 0.025s;
+  opacity: 0.9;
+}
+
+.e3 {
+  -webkit-animation-delay: 0.05s;
+          animation-delay: 0.05s;
+  opacity: 0.8;
+}
+
+.e4 {
+  -webkit-animation-delay: 0.075s;
+          animation-delay: 0.075s;
+  opacity: 0.7;
+}
+
+.e5 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+  opacity: 0.6;
+}
+
+.e6 {
+  -webkit-animation-delay: 0.125s;
+          animation-delay: 0.125s;
+  opacity: 0.5;
+}
+
+.e7 {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+  opacity: 0.4;
+}
+
+.e8 {
+  -webkit-animation-delay: 0.175s;
+          animation-delay: 0.175s;
+  opacity: 0.3;
+}
+
+.e9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+  opacity: 0.2;
+}
+
+.e10 {
+  -webkit-animation-delay: 0.225s;
+          animation-delay: 0.225s;
+  opacity: 0.1;
+}
+
+/*---------------animation------------------*/
+@-webkit-keyframes movement {
+  0% {
+    top: -25px;
+    left: -25px;
+  }
+  25% {
+    top: -25px;
+    left: 475px;
+  }
+  50% {
+    top: 475px;
+    left: 475px;
+  }
+  75% {
+    top: 475px;
+    left: -25px;
+  }
+  100% {
+    top: -25px;
+    left: -25px;
+  }
+}
+@keyframes movement {
+  0% {
+    top: -25px;
+    left: -25px;
+  }
+  25% {
+    top: -25px;
+    left: 475px;
+  }
+  50% {
+    top: 475px;
+    left: 475px;
+  }
+  75% {
+    top: 475px;
+    left: -25px;
+  }
+  100% {
+    top: -25px;
+    left: -25px;
+  }
+}
+@-webkit-keyframes color-change {
+  0% {
+    background-color: blue;
+  }
+  25% {
+    background-color: red;
+  }
+  50% {
+    background-color: violet;
+  }
+  75% {
+    background-color: aqua;
+  }
+  100% {
+    background-color: blue;
+  }
+}
+@keyframes color-change {
+  0% {
+    background-color: blue;
+  }
+  25% {
+    background-color: red;
+  }
+  50% {
+    background-color: violet;
+  }
+  75% {
+    background-color: aqua;
+  }
+  100% {
+    background-color: blue;
+  }
+}
+@-webkit-keyframes cycle {
+  from {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+@keyframes cycle {
+  from {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@-webkit-keyframes typing-color {
+  0% {
+    color: orangered;
+  }
+  25% {
+    color: red;
+  }
+  50% {
+    color: blue;
+  }
+  100% {
+    color: yellowgreen;
+  }
+}
+@keyframes typing-color {
+  0% {
+    color: orangered;
+  }
+  25% {
+    color: red;
+  }
+  50% {
+    color: blue;
+  }
+  100% {
+    color: yellowgreen;
+  }
+}
+@-webkit-keyframes faint {
+  0% {
+    box-shadow: 0px 0px 200px 10px rebeccapurple;
+  }
+  20% {
+    box-shadow: 0px 0px 50px 0px rebeccapurple;
+  }
+  40% {
+    box-shadow: 0px 0px 200px 100px rebeccapurple;
+  }
+  60% {
+    box-shadow: 0px 0px 50px 0px rebeccapurple;
+  }
+  80% {
+    box-shadow: 0px 0px 200px 190px rebeccapurple;
+  }
+  100% {
+    box-shadow: 0px 0px 50px 0px rebeccapurple;
+  }
+}
+@keyframes faint {
+  0% {
+    box-shadow: 0px 0px 200px 10px rebeccapurple;
+  }
+  20% {
+    box-shadow: 0px 0px 50px 0px rebeccapurple;
+  }
+  40% {
+    box-shadow: 0px 0px 200px 100px rebeccapurple;
+  }
+  60% {
+    box-shadow: 0px 0px 50px 0px rebeccapurple;
+  }
+  80% {
+    box-shadow: 0px 0px 200px 190px rebeccapurple;
+  }
+  100% {
+    box-shadow: 0px 0px 50px 0px rebeccapurple;
+  }
+}
+@-webkit-keyframes faint-red {
+  0% {
+    box-shadow: 0px 0px 200px 10px red;
+  }
+  20% {
+    box-shadow: 0px 0px 50px 0px red;
+  }
+  40% {
+    box-shadow: 0px 0px 200px 100px red;
+  }
+  60% {
+    box-shadow: 0px 0px 50px 0px red;
+  }
+  80% {
+    box-shadow: 0px 0px 200px 190px red;
+  }
+  100% {
+    box-shadow: 0px 0px 50px 0px red;
+  }
+}
+@keyframes faint-red {
+  0% {
+    box-shadow: 0px 0px 200px 10px red;
+  }
+  20% {
+    box-shadow: 0px 0px 50px 0px red;
+  }
+  40% {
+    box-shadow: 0px 0px 200px 100px red;
+  }
+  60% {
+    box-shadow: 0px 0px 50px 0px red;
+  }
+  80% {
+    box-shadow: 0px 0px 200px 190px red;
+  }
+  100% {
+    box-shadow: 0px 0px 50px 0px red;
+  }
+}
+@-webkit-keyframes display-switch {
+  from {
+    display: block;
+  }
+  to {
+    display: none;
+  }
+}
+@keyframes display-switch {
+  from {
+    display: block;
+  }
+  to {
+    display: none;
+  }
+}/*# sourceMappingURL=animation3.css.map */

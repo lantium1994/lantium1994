@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: rgb(125, 97, 133);
+    }
+
+    header {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header.over {
+      height: 100vh;
+      width: 100%;
+      background-color: skyblue;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header.over .countdown {
+      display: none;
+    }
+
+    header.over .score {
+      margin: 0;
+      padding: 0 0 10px;
+    }
+
+    header.over .pause {
+      display: none;
+    }
+
+    header.over .one-more-time {
+      font-size: 40px;
+      border-radius: 15px;
+      width: 300px;
+      height: 70px;
+      background-color: rgb(177, 177, 177);
+      margin-top: 30px;
+    }
+
+    header.over .rank {
+      font-size: 60px;
+    }
+
+    main {
+      height: calc(100vh -100px);
+      width: 100%;
+      display: flex;
+    }
+
+    .main-function {
+      position: relative;
+      top: calc(25vh - 100px);
+      margin: auto;
+      width: 500px;
+      height: 500px;
+      background-color: #f2f2f2;
+      border-radius: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 5px;
+    }
+
+    .side-section {
+      text-align: center;
+      font-size: 40px;
+      position: relative;
+      top: calc(25vh - 100px);
+      padding: 10px;
+      border-radius: 15px;
+      opacity: 0.8;
+      display: flex;
+      flex-direction: column;
+      margin: 0 20px;
+      width: 150px;
+      height: 500px;
+      background-color: #f2f2f2;
+      overflow: hidden;
+    }
+
+    .records span {
+      display: block;
+      font-size: 25px;
+      margin: 8px 0;
+    }
+
+    .pause-section {
+      background-color: rgb(22, 0, 0);
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .box {
+      width: calc((500px - 30px) / 2);
+      height: calc((500px - 30px) / 2);
+      background-color: aqua;
+      margin: 5px;
+      border-radius: 15px;
+    }
+
+    .btn {
+      border-radius: 15px;
+      width: 120px;
+      height: 70px;
+      margin: 5px 10px 15px 0px;
+      text-align: center;
+      font-size: 30px;
+      background-color: rgb(177, 177, 177);
+    }
+
+    .btn:hover {
+      background-color: rgb(132, 132, 132);
+      transform: scale(1.1);
+    }
+
+    .btn:focus {
+      background-color: rgb(50, 50, 50);
+      transform: scale(1);
+      color: aliceblue;
+    }
+
+    .p-btn {
+      border-radius: 15px;
+      width: 70%;
+      height: 70px;
+      margin: 0 73.5px;
+      font-size: 30px;
+      font-weight: 500;
+      background-color: #f2f2f2;
+    }
+
+    .p-btn:hover {
+      background-color: rgb(1, 255, 255);
+      transform: scale(1.1);
+    }
+
+    .p-btn:focus {
+      background-color: blue;
+      color: azure;
+      transform: scale(1);
+    }
+
+    .s-btn {
+      width: 130px;
+      height: 60px;
+      background-color: #f2f2f2;
+      margin: 20px 0;
+      border-radius: 6px;
+    }
+
+    .countdown {
+      font-size: 30px;
+      width: 150px;
+      height: 70px;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .score {
+      margin: 5px 10px;
+      font-size: 35px;
+    }
+
+    .answer {
+      background-color: rgb(8, 80, 122);
+    }
+
+    .disappear {
+      animation: vanish 0.5s ease 1 alternate forwards;
+    }
+
+    .shatter {
+      color: rgb(255, 255, 255);
+      animation: shatter 0.05s linear infinite alternate;
+      font-size: 40px;
+    }
+
+    .freeze {
+      display: none;
+    }
+
+    .warning {
+      background-color: rgb(255, 0, 0);
+    }
+
+    .rotate {
+      animation: rotate 1s linear infinite forwards;
+    }
+
+    @keyframes vanish {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      25% {
+        transform: scale(0.9);
+      }
+
+      100% {
+        transform: scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes shatter {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      25% {
+        transform: translate(3%, 0);
+      }
+
+      75% {
+        transform: translate(-3%, 0);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: scale(1) rotate(0);
+        box-shadow: 0 0 10px black;
+      }
+
+      15% {
+        box-shadow: 0 0 0px black;
+      }
+
+      30% {
+        box-shadow: 0 0 20px rgb(255, 0, 0);
+      }
+
+      50% {
+        transform: scale(1.5);
+        box-shadow: 0 0 0px rgb(255, 0, 0);
+      }
+
+      65% {
+        box-shadow: 0 0 30px rgb(0, 170, 255);
+      }
+
+      80% {
+        box-shadow: 0 0 0px rgb(0, 170, 255);
+      }
+
+      100% {
+        transform: scale(1) rotate(5turn);
+      }
+    }
+  </style>
+</head>
+
+<body id="body">
+  <header id="header">
+    <div class="score">得分: <span class="score-value"></span></div>
+    <button class="btn start">START</button>
+    <div class="countdown freeze"></div>
+    <button class="btn pause">PAUSE</button>
+    <div class="rank freeze"></div>
+    <button class="one-more-time freeze">重新遊戲</button>
+  </header>
+  <main id="main">
+    <div class="side-section">
+      紀錄
+      <div class="records"></div>
+    </div>
+    <div class="game-section main-function">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <div class="pause-section freeze main-function">
+      <button class="continue p-btn">繼續遊戲</button>
+      <button class="restart p-btn">重新開始</button>
+      <button class="quit p-btn">結束遊戲</button>
+    </div>
+    <div class="side-section skill">
+      技能
+      <div>
+        <button class="s-btn">HINT</button>
+        <button class="s-btn">HINT</button>
+        <button class="s-btn">HINT</button>
+        <button class="s-btn">HINT</button>
+      </div>
+    </div>
+  </main>
+</body>
+
+<script>
+  ///////////////////////////// 宣告變數 //////////////////////////////////////
+  const bodyHtml = document.getElementById('body');
+  const headerHtml = document.getElementById('header');
+  const mainHtml = document.getElementById('main');
+  const gameSection = document.querySelector('.game-section');
+  const score = document.querySelector('.score-value');
+  const countdown = document.querySelector('.countdown');
+  const pause = document.querySelector('.pause');
+  const pauseSection = document.querySelector('.pause-section');
+  const conti = document.querySelector('.continue');
+  const restart = document.querySelector('.restart');
+  const quit = document.querySelector('.quit');
+  const oMT = document.querySelector('.one-more-time');
+  const rank = document.querySelector('.rank');
+  const start = document.querySelector('.start');
+  const skillBtns = document.querySelectorAll('.s-btn');
+  const records = document.querySelector('.records');
+  score.textContent = 0;
+  let a = 2; // a 是一邊的格子數 === level
+  let t = 90 * 1000;
+  ////////////////////////////// 宣告函式 /////////////////////////////////////////
+  // 開始遊戲f //
+  start.addEventListener('click', function () {
+    clearInterval(timer);
+    countdown.innerHTML = ' 1 分 30 秒';
+    t = 89 * 1000;
+    timer = setInterval(cdFunc, 1000);
+    countdown.classList.remove('freeze');
+    start.classList.add('freeze');
+    resetGame();
+    reset();
+  });
+
+  // 生成元素f //
+  let geneBox = function (a) {
+    for (i = 0; i < a ** 2; i++) {
+      gameSection.innerHTML += '<div class="box"></div>';
+    }
+  };
+  // 重置遊戲f //
+  let resetGame = function () {
+    pauseSection.classList.add('freeze');
+    gameSection.classList.remove('freeze');
+    countdown.classList.remove('shatter');
+    bodyHtml.classList.remove('warning');
+    score.textContent = 0;
+    a = 2;
+    gameSection.innerHTML = '';
+    geneBox(a);
+    skillBtns.forEach(btn => {
+      btn.classList.remove('freeze');
+    });
+  };
+  //遊戲評等f
+  let ranking = function () {
+    let finPoint = Number(score.textContent);
+    if (finPoint <= 0) {
+      return `<span style="color:grey">廢物嗎?</span>`;
+    } else if (finPoint < 15) {
+      return `<span style="color:black">哈囉~菜雞!</span>`;
+    } else if (finPoint < 35) {
+      return `<span style="color:green">不過爾爾</span>`;
+    } else if (finPoint < 60) {
+      return `<span style="color:blue">洞察專家</span>`;
+    } else if (finPoint < 90) {
+      return `<span style="color:yellow">鷹眼</span>`;
+    } else {
+      return `<span style="color:orange">火眼金睛</span>`;
+    }
+  };
+
+  //評等2 f
+  let ranking2 = function () {
+    let finPoint = Number(score.textContent);
+    if (finPoint <= 0) {
+      return `<span style="color:grey">庸才</span>`;
+    } else if (finPoint < 15) {
+      return `<span style="color:black">菜雞</span>`;
+    } else if (finPoint < 35) {
+      return `<span style="color:green">凡人</span>`;
+    } else if (finPoint < 60) {
+      return `<span style="color:blue">專家</span>`;
+    } else if (finPoint < 90) {
+      return `<span style="color:yellow">狙擊手</span>`;
+    } else {
+      return `<span style="color:orange">千里眼</span>`;
+    }
+  };
+  //遊戲結束f
+  function gameOver() {
+    start.classList.add('freeze');
+    mainHtml.classList.add('freeze');
+    headerHtml.classList.add('over');
+    oMT.classList.remove('freeze');
+    rank.classList.remove('freeze');
+    rank.innerHTML = `${ranking()}`;
+    records.innerHTML = `${ranking2() + records.innerHTML}`;
+    clearInterval(timer);
+    oMT.addEventListener('click', function () {
+      mainHtml.classList.remove('freeze');
+      headerHtml.classList.remove('over');
+      oMT.classList.add('freeze');
+      rank.classList.add('freeze');
+      start.classList.remove('freeze');
+      countdown.classList.add('freeze');
+      resetGame();
+    });
+  }
+
+  /////////////////////////// 倒數計時 ////////////////////////////////////
+
+  let cdFunc = function () {
+    let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((t % (1000 * 60)) / 1000);
+    countdown.innerHTML =
+      minutes == 1 ? `${minutes} 分 ${seconds} 秒` : `${seconds} 秒`;
+    t = t - 1000;
+    if (t < 15 * 1000) {
+      countdown.classList.add('shatter');
+      bodyHtml.classList.add('warning');
+    }
+    if (t < 0) {
+      clearInterval(timer);
+      countdown.textContent = 'BANG!';
+      gameOver();
+    }
+  };
+  let timer = setInterval(cdFunc, 1000);
+  ////////////////////////////////// 暫停事件/選單 //////////////////////////////////
+  pause.addEventListener('click', function () {
+    gameSection.classList.add('freeze');
+    pauseSection.classList.remove('freeze');
+    clearInterval(timer);
+  });
+
+  conti.addEventListener('click', function () {
+    gameSection.classList.remove('freeze');
+    pauseSection.classList.add('freeze');
+    timer = setInterval(cdFunc, 1000);
+  });
+  restart.addEventListener('click', function () {
+    countdown.classList.add('freeze');
+    start.classList.remove('freeze');
+    resetGame();
+  });
+  quit.addEventListener('click', gameOver);
+
+  ////////////////////////////////// 遊戲區 ////////////////////////////////////
+  function reset() {
+    let colorArr = [
+      Math.floor(Math.random() * 256),
+      Math.floor(Math.random() * 256),
+      Math.floor(Math.random() * 256),
+    ];
+    // if (colorArr[0] > 245 || colorArr[1] > 245 || colorArr[2] > 245) {
+    //   reset();
+    // } else if (colorArr[0] < 12 || colorArr[1] < 12 || colorArr[2] < 12) {
+    //   reset();
+    // }
+    let boxes = document.querySelectorAll('.box');
+    boxes[Math.floor(Math.random() * a ** 2)].classList.add('answer');
+    let ansColor = document.querySelector('.answer');
+    let point = Number(score.textContent);
+    let colorArr2 = [...colorArr];
+    /////////////////////////////////難度係數////////////////////////////////////////
+    boxes.forEach(box => {
+      let degOfDiff = [
+        function (i) {
+          if (i < 3) {
+            return 0.4 + Math.floor(Math.random() * 5) / 10;
+          } else if (i < 5) {
+            return 0.6 + Math.floor(Math.random() * 4) / 10;
+          } else if (i < 7) {
+            return 0.7 + Math.floor(Math.random() * 3) / 10;
+          } else {
+            return 0.8 + Math.floor(Math.random() * 2) / 10;
+          }
+        },
+        function (i) {
+          if (i < 3) {
+            return 1.6 - Math.floor(Math.random() * 5) / 10;
+          } else if (i < 5) {
+            return 1.4 - Math.floor(Math.random() * 4) / 10;
+          } else if (i < 7) {
+            return 1.3 - Math.floor(Math.random() * 3) / 10;
+          } else {
+            return 1.2 - Math.floor(Math.random() * 2) / 10;
+          }
+        },
+      ];
+      //////////////////////////////// Box Style //////////////////////////////////////
+      let sideLength = (490 - a * 10) / a;
+      box.style.width = `${sideLength}px`;
+      box.style.height = `${sideLength}px`;
+      box.classList.remove('disappear');
+      box.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`;
+      let colorPara = Math.floor(Math.random() * 3);
+      colorArr2[colorPara] =
+        colorArr[colorPara] * degOfDiff[Math.floor(Math.random() * 2)](a);
+      ansColor.style.backgroundColor = `rgb(${colorArr2[0]}, ${colorArr2[1]}, ${colorArr2[2]})`;
+      ///////////////////////////////// 點擊事件 ///////////////////////////////////////
+      box.addEventListener('click', function () {
+        if (box.classList.contains('answer')) {
+          gameSection.innerHTML = '';
+          if (a < 10) {
+            if (point < 3) {
+              a = 2;
+            } else {
+              a = Math.ceil((point + 4) / 3);
+            }
+          } else {
+            a;
+          }
+          geneBox(a);
+          score.textContent = point + 2;
+          reset();
+        } else {
+          point -= 1;
+          score.textContent = point;
+          box.classList.add('disappear');
+        }
+      });
+    });
+    /////////////////////////////////  技能 /////////////////////////////////////
+
+    skillBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        point -= 3;
+        score.textContent = point;
+        btn.classList.add('freeze');
+        ansColor.classList.add('rotate');
+      });
+    });
+  }
+</script>
+
+</html>
