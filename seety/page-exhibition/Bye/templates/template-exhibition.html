@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      background: linear-gradient(45deg, #a4a4a4, #a99f9f);
+    }
+
+    .container {
+      width: 100%;
+      /* height: 100vh; */
+      margin: auto;
+      padding: 10vh 100px;
+
+    }
+
+    .exhibition {
+      width: 100%;
+      height: 90%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+
+    }
+
+    .image-area {
+      position: relative;
+      width: 100%;
+    }
+
+    .image-area img {
+      width: 100%;
+    }
+
+    .image-area a span {
+      display: block;
+      position: absolute;
+      inset: 0 0 auto auto;
+      width: auto;
+      height: 3em;
+      border-radius: 5px;
+      text-decoration: none;
+      background-color: rgb(112, 65, 65);
+      color: bisque;
+      line-height: 3em;
+      opacity: 0.6;
+      /* transform: translate(0, 0); */
+    }
+
+    .content-area {
+      width: 100%;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .exhibition-detail {
+      margin-top: 2vh;
+    }
+
+    .exhibition-detail h2 {
+      margin: 3em 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <figure class="exhibition">
+      <div class="image-area">
+        <img src={%IMAGE%} alt="展演宣傳照">
+        <a href="/overview"><span>↖︎返回上一頁</span></a>
+      </div>
+
+      <div class="content-area">
+        <h1 class="exhibition-name">{%EXHIBITIONNAME%}</h1>
+        <div class="exhibition-detail">
+          <p class="date">日期｜{%DATE%}</p>
+          <p class="time">時間｜{%ENTERTIME%}</p>
+          <p class="price">票價｜{%TICKETPRICE%}</p>
+        </div>
+        <h2>{%PERFORMER%}</h2>
+        <p>{%PERFORMERDESCRIPTION%}</p>
+        <p class="exhibition-description">{%DESCRIPTION%}</p>
+      </div>
+    </figure>
+  </div>
+</body>
+
+</html>
