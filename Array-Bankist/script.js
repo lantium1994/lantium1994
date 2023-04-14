@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 alert(
-  'user可用名字縮寫 \n js(Jonas Schmedtmann) pin:1111, \n jd(Jessica Davis) pin:2222, \n ls(Lantium Chuang) pin:3333, \n sm(Sarah Smith) pin: 4444 \n 進行測試 '
+  'user可用名字縮寫 \n js(Jonas Schmedtmann) pin:1111, \n jd(Jessica Davis) pin:2222, \n lc(Lantium Chuang) pin:3333, \n sm(Sarah Smith) pin: 4444 \n 進行測試 '
 );
 // Data
 const account1 = {
@@ -91,18 +91,18 @@ const calcDisplayBalance = function (acc) {
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
-    .filter(mov => mov > 0)
+    .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
   const out = acc.movements
-    .filter(mov => mov < 0)
+    .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
   const interest = acc.movements
-    .filter(mov => mov > 0)
-    .map(deposit => (deposit * acc.interestRate) / 100)
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       return int >= 1;
     })
@@ -111,11 +111,11 @@ const calcDisplaySummary = function (acc) {
 };
 
 const createUsernames = function (accs) {
-  accs.forEach(acc => {
+  accs.forEach((acc) => {
     acc.username = acc.owner
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .map((name) => name[0])
       .join('');
   });
 };
@@ -138,7 +138,7 @@ btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
   currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
+    (acc) => acc.username === inputLoginUsername.value
   );
   console.log(currentAccount);
 
@@ -161,7 +161,7 @@ btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
   const receiverAcc = accounts.find(
-    acc => acc.username === inputTransferTo.value
+    (acc) => acc.username === inputTransferTo.value
   );
   inputTransferAmount.value = inputTransferTo.value = '';
 
@@ -184,7 +184,10 @@ btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
   const amount = Number(inputLoanAmount.value);
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
     //  Add movement
     currentAccount.movements.push(amount);
 
@@ -202,7 +205,7 @@ btnClose.addEventListener('click', function (e) {
     currentAccount.pin === Number(inputClosePin.value)
   ) {
     const index = accounts.findIndex(
-      acc => acc.username === currentAccount.username
+      (acc) => acc.username === currentAccount.username
     );
     console.log(index);
 
@@ -629,8 +632,8 @@ labelBalance.addEventListener('click', function () {
 
 // 1
 const bankDepositSum = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov > 0)
   .reduce((sum, cur) => sum + cur, 0);
 
 // console.log(bankDepositSum);
@@ -640,7 +643,7 @@ const bankDepositSum = accounts
 
 // const numDeposits1000 = accounts.flatMap(acc => acc.movements).reduce((count, cur) => cur > 1000 ? count + 1 : count , 0);
 const numDeposits1000 = accounts
-  .flatMap(acc => acc.movements)
+  .flatMap((acc) => acc.movements)
   .reduce((count, cur) => (cur > 1000 ? ++count : count), 0);
 // Prefixed ++ operator
 
@@ -648,7 +651,7 @@ const numDeposits1000 = accounts
 
 // 3
 const { deposits, withdrawals } = accounts
-  .flatMap(acc => acc.movements)
+  .flatMap((acc) => acc.movements)
   .reduce(
     (sums, cur) => {
       // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
@@ -663,13 +666,13 @@ const { deposits, withdrawals } = accounts
 // 4
 // this is a nice title -> This Is a Nice Title
 const convertTitleCase = function (title) {
-  const capitalize = str => word[0].toUpperCase() + word.slice(1);
+  const capitalize = (str) => word[0].toUpperCase() + word.slice(1);
   const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with'];
 
   const titleCase = title
     .toLowerCase()
     .split(' ')
-    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .map((word) => (exceptions.includes(word) ? word : capitalize(word)))
     .join(' ');
   return capitalize(titleCase);
 };
@@ -716,11 +719,11 @@ const dogs = [
 ];
 
 // 1.
-dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
 console.log(dogs);
 
 // 2.
-dogs.forEach(dog => {
+dogs.forEach((dog) => {
   if (dog.owners.includes('Sarah')) {
     console.log(
       `Sarah's dog eats too ${dog.curFood > dog.recFood ? 'much' : 'little'}`
@@ -731,7 +734,7 @@ dogs.forEach(dog => {
 // 3.
 let ownersEatTooMuch = [];
 let ownersEatTooLittle = [];
-dogs.map(dog => {
+dogs.map((dog) => {
   if (dog.curFood > dog.recFood) ownersEatTooMuch.push(dog.owners);
   else ownersEatTooLittle.push(dog.owners);
 });
@@ -739,16 +742,18 @@ dogs.map(dog => {
 // 4.
 console.log(
   `${ownersEatTooLittle
-    .flatMap(name => name)
+    .flatMap((name) => name)
     .join(' and ')}'s dogs eat too little.`
 );
 console.log(
-  `${ownersEatTooMuch.flatMap(name => name).join(' and ')}'s dogs eat too much.`
+  `${ownersEatTooMuch
+    .flatMap((name) => name)
+    .join(' and ')}'s dogs eat too much.`
 );
 
 // 5.
 console.log(
-  dogs.some(dog => {
+  dogs.some((dog) => {
     dog.curFood === dog.recFood;
   })
 );
@@ -756,18 +761,19 @@ console.log(
 // 6.
 console.log(
   dogs.filter(
-    dog => dog.curFood <= dog.recFood * 1.1 && dog.curFood >= dog.recFood * 0.9
+    (dog) =>
+      dog.curFood <= dog.recFood * 1.1 && dog.curFood >= dog.recFood * 0.9
   ).length > 0
 );
 
 // 7.
 const okayDog = dogs.filter(
-  dog => dog.curFood <= dog.recFood * 1.1 && dog.curFood >= dog.recFood * 0.9
+  (dog) => dog.curFood <= dog.recFood * 1.1 && dog.curFood >= dog.recFood * 0.9
 );
 console.log(okayDog);
 
 //  8.
 const ascendingRecFood = dogs
-  .map(dog => dog)
+  .map((dog) => dog)
   .sort((a, b) => a.recFood - b.recFood);
 console.log(ascendingRecFood);
